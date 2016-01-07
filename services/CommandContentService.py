@@ -1,7 +1,7 @@
 # Service calling a command and checking output for a certain regex
 
 import re
-from ServiceClass import ServiceClass
+from .ServiceClass import ServiceClass
 import subprocess
 
 """
@@ -58,7 +58,7 @@ class CommandContentService(ServiceClass):
 
     # return status value of this class
     def _get_status_value(self):
-        output = subprocess.check_output(self.command, shell=self.command_shell)
+        output = str(subprocess.check_output(self.command, shell=self.command_shell))
         # just match output?
         if self.r is not None:
             return self.r.match(output)

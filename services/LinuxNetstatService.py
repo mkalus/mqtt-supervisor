@@ -2,7 +2,7 @@
 
 import ipaddress
 import re
-from ServiceClass import ServiceClass
+from .ServiceClass import ServiceClass
 import socket
 
 """

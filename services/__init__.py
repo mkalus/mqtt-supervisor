@@ -1,8 +1,8 @@
 # Services Package - import all classes
-from ServiceClass import ServiceClass
-from CommandReturnService import CommandReturnService
-from LinuxNetstatService import LinuxNetstatService
-from CommandContentService import CommandContentService
+from .ServiceClass import ServiceClass
+from .CommandReturnService import CommandReturnService
+from .LinuxNetstatService import LinuxNetstatService
+from .CommandContentService import CommandContentService
 
 # Service factory
 def service_factory(service_name, name, config, settings):

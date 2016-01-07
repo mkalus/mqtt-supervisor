@@ -1,7 +1,7 @@
 # Service calling a command and expecting certain return values
 
 import os
-from ServiceClass import ServiceClass
+from .ServiceClass import ServiceClass
 import subprocess
 
 """

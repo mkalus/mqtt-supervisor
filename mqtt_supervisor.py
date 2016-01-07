@@ -4,7 +4,12 @@
 
 # installation on Ubuntu
 # sudo apt-get install python-yaml
+# sudo pip3 install paho-mqtt
+#
+# or (if running python 2.7):
 # sudo pip install paho-mqtt
+# + backport of ipaddress to python 2.7:
+# sudo apt-get install python-ipaddress
 
 import logging
 import services
@@ -28,7 +33,7 @@ def read_configuration(file='config.yaml'):
 
 try:
     config = read_configuration()
-except Exception, e:
+except Exception as e:
     print("Could not read configuration: " + e.message)
     sys.exit(1)
 
@@ -48,7 +53,7 @@ if config['mqtt_broker']['use_ca']:
 try:
     client.connect(config['mqtt_broker']['hostname'], config['mqtt_broker']['port'], config['mqtt_broker']['keepalive'])
     logging.info("Connected to broker " + config['mqtt_broker']['hostname'] + ":" + str(config['mqtt_broker']['port']))
-except Exception, e:
+except Exception as e:
     print("Could not connect with mqtt broker: " + e.message)
     sys.exit(1)
 
