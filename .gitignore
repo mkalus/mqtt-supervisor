@@ -1,3 +1,4 @@
+*.pyc
 .idea
 ca.crt
 config.yaml
