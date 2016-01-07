@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*
 # Supervisor process - reads config.yaml and checks services
 
 # installation on Ubuntu
 # sudo apt-get install python-yaml
-# pip install paho-mqtt
+# sudo pip install paho-mqtt
 
 import logging
 import services
