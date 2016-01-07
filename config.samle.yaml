@@ -1,0 +1,82 @@
+%YAML 1.2
+---
+mqtt_broker:
+  hostname: localhost
+  port: 1883
+  # maximum period in seconds allowed between communications
+  keepalive: 60
+  bind_address:
+  use_username_password: false
+  username: user
+  password: password
+  use_ca: false
+  # path to CA (can be an array if multiple certs are needed)
+  ca_cert: ./ca.crt
+  # if true, do not check ca (allow self signed certs)
+  ca_insecure: true
+settings:
+  # added to paths: mqtt_base_topic/service/status
+  mqtt_base_topic: local
+services:
+  # name of service - name of path part for mqtt
+  apache:
+    type: CommandReturnService
+    # check frequency in seconds
+    check_frequency: 60
+    # always send update, not just on value changes
+    always_send_update: false
+    # run command
+    command: "service apache2 status"
+    return_value_ok: 0
+    # or check fails only
+    #return_value_fail: 3
+    value_if_ok: 1
+    value_if_fail: 0
+    # or take return value as message value
+    #return_value_as_message_value: false
+    topic_value: status
+    qos_value: 0
+    retain_value: true
+    add_time: true
+    topic_time: time
+    qos_time: 0
+    retain_time: true
+  cpu0:
+    type: CommandContentService
+    # check frequency in seconds
+    check_frequency: 5
+    # always send update, not just on value changes
+    always_send_update: true
+    # run command
+    command: "cpufreq-info -c 0 -fm"
+    # regex to look for - if it is empty, take output of whole command as return value
+    regexp:
+    # replace output with regexp, only makes sense if regexp is empty
+    regexp_sub: '[\s+]'
+    regexp_sub_with: ''
+    #value_if_ok: 1
+    #value_if_fail: 0
+    # or take return value as message value
+    #return_value_as_message_value: false
+    return_value_as_message_value: true
+    retain_value: false
+    retain_time: false
+  ssh:
+    type: LinuxNetstatService
+    # check frequency in seconds
+    check_frequency: 60
+    # always send update, not just on value changes
+    always_send_update: false
+    ip6: false
+    udp: false
+    host:
+    port: 22
+    value_if_ok: 1
+    value_if_fail: 0
+    topic_value: status
+    qos_value: 0
+    retain_value: true
+    add_time: true
+    topic_time: time
+    qos_time: 0
+    retain_time: true
