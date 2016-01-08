@@ -10,6 +10,10 @@
 # sudo pip install paho-mqtt
 # + backport of ipaddress to python 2.7:
 # sudo apt-get install python-ipaddress
+#
+# If your user has trouble accessing paho-mqtt, execute the following commands:
+# sudo find /usr/local/lib/python3.4/dist-packages/ -type d -exec chmod 755 {} ';'
+# sudo find /usr/local/lib/python3.4/dist-packages/ -type f -exec chmod 644 {} ';'
 
 import logging
 import services
@@ -34,7 +38,7 @@ def read_configuration(file='config.yaml'):
 try:
     config = read_configuration()
 except Exception as e:
-    print("Could not read configuration: " + e.message)
+    print("Could not read configuration: " + str(e))
     sys.exit(1)
 
 # open mqtt client
@@ -54,7 +58,7 @@ try:
     client.connect(config['mqtt_broker']['hostname'], config['mqtt_broker']['port'], config['mqtt_broker']['keepalive'])
     logging.info("Connected to broker " + config['mqtt_broker']['hostname'] + ":" + str(config['mqtt_broker']['port']))
 except Exception as e:
-    print("Could not connect with mqtt broker: " + e.message)
+    print("Could not connect with mqtt broker: " + str(e))
     sys.exit(1)
 
 # add client to config
