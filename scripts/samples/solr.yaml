@@ -1,0 +1,18 @@
+# on ip6 system, you might want to set ip6 to true
+  solr:
+    type: LinuxNetstatService
+    # check frequency in seconds
+    check_frequency: 900
+    # always send update, not just on value changes
+    always_send_update: false
+    ip6: false
+    udp: false
+    host:
+    port: 8983
+    value_if_ok: 1
+    value_if_fail: 0
+    topic_value: status
+    qos_value: 0
+    add_time: true
+    topic_time: time
+    qos_time: 0

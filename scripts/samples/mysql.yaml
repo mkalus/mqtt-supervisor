@@ -1,0 +1,15 @@
+# check mysql pid and send 1 or 0
+# needs read access for /var/run/mysqld/mysqld.pid
+  mysqld:
+    type: CommandContentService
+    # check frequency in seconds
+    check_frequency: 900
+    # always send update, not just on value changes
+    always_send_update: false
+    # run command
+    command: "if ps -p $(cat /var/run/mysqld/mysqld.pid) > /dev/null; then echo 1; else echo 0; fi"
+    # regex to look for - if it is empty, take output of whole command as return value
+    regexp:
+    regexp_sub: '[\s+]'
+    regexp_sub_with: ''
+    return_value_as_message_value: true

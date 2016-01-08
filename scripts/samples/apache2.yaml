@@ -1,0 +1,22 @@
+# check via apache service status
+# also see httpd.yaml
+  apache:
+    type: CommandReturnService
+    # check frequency in seconds
+    check_frequency: 60
+    # always send update, not just on value changes
+    always_send_update: false
+    # run command
+    command: "service apache2 status"
+    return_value_ok: 0
+    # or check fails only
+    #return_value_fail: 3
+    value_if_ok: 1
+    value_if_fail: 0
+    # or take return value as message value
+    #return_value_as_message_value: false
+    topic_value: status
+    qos_value: 0
+    add_time: true
+    topic_time: time
+    qos_time: 0
