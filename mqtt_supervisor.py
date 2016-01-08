@@ -3,10 +3,11 @@
 # Supervisor process - reads config.yaml and checks services
 
 # installation on Ubuntu
-# sudo apt-get install python-yaml
+# sudo apt-get install python3-yaml
 # sudo pip3 install paho-mqtt
 #
 # or (if running python 2.7):
+# sudo apt-get install python-yaml
 # sudo pip install paho-mqtt
 # + backport of ipaddress to python 2.7:
 # sudo apt-get install python-ipaddress
