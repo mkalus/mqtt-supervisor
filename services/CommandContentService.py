@@ -65,7 +65,7 @@ class CommandContentService(ServiceClass):
             return ''
         # just match output?
         if self.r is not None:
-            return self.r.match(output)
+            return self.r.match(output) is not None
         # replace output?
         if self.rs is not None:
             return self.rs.sub(self.regexp_sub_with, output)
