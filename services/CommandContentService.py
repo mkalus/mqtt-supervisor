@@ -58,7 +58,11 @@ class CommandContentService(ServiceClass):
 
     # return status value of this class
     def _get_status_value(self):
-        output = str(subprocess.check_output(self.command, shell=self.command_shell))
+        output = subprocess.check_output(self.command, shell=self.command_shell)
+        if output is not None:
+            output = output.decode(encoding='UTF-8')
+        else:
+            return ''
         # just match output?
         if self.r is not None:
             return self.r.match(output)
